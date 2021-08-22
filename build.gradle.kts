@@ -30,7 +30,27 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:2.0.12")
+    testImplementation("org.spekframework.spek2:spek-runtime-jvm:2.0.12")
+
+    testImplementation("org.spekframework.spek2:spek-runner-junit5:2.0.12")
+    testImplementation("io.mockk:mockk:1.10.2")
+
+    testImplementation("com.natpryce:hamkrest:1.4.2.0")
+
+    testImplementation("io.mockk:mockk:1.10.2")
 }
+
+tasks {
+    test {
+        useJUnitPlatform {
+            includeEngines("spek2")
+        }
+        testLogging.showExceptions = true
+    }
+}
+
 
 application {
     // Define the main class for the application.
